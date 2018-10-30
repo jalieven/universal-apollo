@@ -1,21 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import createHistory from 'history/createBrowserHistory'
 import { AppContainer } from 'react-hot-loader'
-import App from './components/App'
+import { BrowserRouter as Router } from 'react-router-dom'
+import Routes from './routes'
 
-const history = createHistory()
+const App = () => (
+  <Router>
+    <Routes />
+  </Router>
+)
 
 const render = App => ReactDOM.hydrate(
   <AppContainer>
-    <App history={history} />
+    <App />
   </AppContainer>,
   document.getElementById('root')
 )
 
 if (process.env.NODE_ENV === 'development' && module.hot) {
-  module.hot.accept('./components/App.js', () => {
-    const App = require('./components/App').default // eslint-ignore-line
+  module.hot.accept('./routes/index.js', () => {
+    const App = require('./routes/index').default // eslint-ignore-line
+    console.log('App', App)
     render(App)
   })
 }
