@@ -61,6 +61,7 @@
 		"lint-staged": "^4.2.3",
 		"poststylus": "^1.0.0",
 		"prettier": "^1.14.3",
+		"pretty-quick": "^1.8.0",
 		"react-hot-loader": "^4.3.11",
 		"rimraf": "^2.6.2",
 		"stylus": "^0.54.5",
@@ -78,7 +79,7 @@
 	"lint-staged": {
 		"linters": {
 			"*.js": [
-				"prettier --write",
+				"pretty-quick --staged",
 				"eslint --fix",
 				"git add"
 			]
