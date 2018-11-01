@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import { Link } from 'react-router-dom'
 import get from 'lodash/get'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
@@ -23,7 +24,7 @@ const HeroAndFriends = ({ match }) => (
       return (
         <Fragment>
           <h1>
-Hero:
+            Hero:
             {data.hero.name}
           </h1>
           <h2>His/her friends:</h2>
@@ -32,6 +33,7 @@ Hero:
               <li key={friend.name}>{friend.name}</li>
             ))}
           </ul>
+          <Link to='/'>Home</Link>
         </Fragment>
       )
     }}
