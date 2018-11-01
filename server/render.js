@@ -4,6 +4,7 @@ import { ApolloProvider, renderToStringWithData } from 'react-apollo';
 import { flushChunkNames } from 'react-universal-component/server';
 import flushChunks from 'webpack-flush-chunks';
 import { StaticRouter as Router } from 'react-router-dom';
+import Helmet from 'react-helmet';
 
 import Routes from '../src/routes';
 import apolloClient from '../src/apollo/server';
@@ -34,6 +35,11 @@ export default ({ clientStats }) => (req, res) => {
 		const initialState = apolloClient.extract();
 		const state = <StateScript state={initialState} />;
 		const stateScript = ReactDOMServer.renderToStaticMarkup(state);
+		// helmet stuff
+		const helmet = Helmet.renderStatic();
+		const title = helmet.title.toString();
+		const meta = helmet.meta.toString();
+		const link = helmet.link.toString();
 		// find out which scripts should be included in the page
 		const chunkNames = flushChunkNames();
 		const { js, styles, cssHash, scripts, stylesheets } = flushChunks(clientStats, {
@@ -44,13 +50,16 @@ export default ({ clientStats }) => (req, res) => {
 		console.log('DYNAMIC CHUNK NAMES RENDERED', chunkNames);
 		console.log('SCRIPTS SERVED', scripts);
 		console.log('STYLESHEETS SERVED', stylesheets);
+		console.log('TITLE', helmet.title.toString());
 		/* eslint-enable no-console */
 		res.send(`
 			<!doctype html>
 			<html>
 			<head>
 				<meta charset="utf-8">
-				<title>react-universal-component-boilerplate</title>
+				${link}
+				${meta}
+				${title}
 				${styles}
 			</head>
 			<body>
