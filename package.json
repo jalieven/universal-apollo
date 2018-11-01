@@ -17,6 +17,7 @@
 		"cm": "git-cz"
 	},
 	"dependencies": {
+		"apicache": "^1.2.3",
 		"apollo-boost": "^0.1.19",
 		"colors": "^1.3.2",
 		"express": "^4.16.3",

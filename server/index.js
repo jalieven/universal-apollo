@@ -1,14 +1,17 @@
 require('colors');
 const express = require('express');
+const apicache = require('apicache');
 const webpack = require('webpack');
 const noFavicon = require('express-no-favicons');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
+
 const clientConfig = require('./../webpack/client.dev');
 const serverConfig = require('./../webpack/server.dev');
 const clientConfigProd = require('./../webpack/client.prod');
 const serverConfigProd = require('./../webpack/server.prod');
+const config = require('./config');
 
 const { publicPath } = clientConfig.output;
 const outputPath = clientConfig.output.path;
@@ -44,12 +47,17 @@ if (DEV) {
 		/* eslint-disable global-require */
 		const serverRender = require('./../buildServer/main.js').default;
 		/* eslint-enable global-require */
-		app.use(publicPath, express.static(outputPath));
-		app.use(
-			serverRender({
-				clientStats,
-			}),
-		);
+		const cache = apicache.options({
+			enabled: config.cache.enabled,
+			debug: config.cache.debug,
+			defaultDuration: config.cache.duration,
+			statusCodes: {
+				exclude: [404, 403],
+			},
+		}).middleware;
+		app.use(publicPath, cache(), express.static(outputPath));
+		app.get('/', cache('1 minute'), serverRender({ clientStats }));
+		app.get('/episodes/:episode', cache('10 seconds'), serverRender({ clientStats }));
 		done();
 	});
 }
