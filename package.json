@@ -17,7 +17,6 @@
 		"cm": "git-cz"
 	},
 	"dependencies": {
-		"aphrodite": "^2.2.3",
 		"apollo-boost": "^0.1.18",
 		"colors": "^1.3.2",
 		"express": "^4.16.3",

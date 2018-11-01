@@ -33,8 +33,8 @@ export default ({ clientStats }) => (req, res) => {
 	renderToStringWithData(<App />).then(app => {
 		// get initial apollo state and convert it into a script string
 		const initialState = apolloClient.extract();
-		const stateScript = <StateScript state={initialState} />;
-		const stateScriptString = ReactDOMServer.renderToStaticMarkup(stateScript);
+		const state = <StateScript state={initialState} />;
+		const stateScript = ReactDOMServer.renderToStaticMarkup(state);
 		// find out which scripts should be included in the page
 		const chunkNames = flushChunkNames();
 		const { js, styles, cssHash, scripts, stylesheets } = flushChunks(clientStats, {
@@ -57,7 +57,7 @@ export default ({ clientStats }) => (req, res) => {
 			</head>
 			<body>
 				<div id="root">${app}</div>
-				${stateScriptString}
+				${stateScript}
 				${cssHash}
 				${js}
 			</body>
