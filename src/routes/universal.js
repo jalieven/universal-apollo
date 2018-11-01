@@ -1,6 +1,8 @@
 import React from 'react';
 import universal from 'react-universal-component';
 
+import config from '../config';
+
 const Loading = () => <div>Loading javascript...</div>;
 const LoadError = () => <div>Error encountered...</div>;
 
@@ -12,7 +14,7 @@ const LoadComponent = file =>
 		onError: error => {
 			throw error;
 		},
-		minDelay: 500,
+		minDelay: config.loadMinDelay,
 		loading: Loading,
 		error: LoadError,
 	});

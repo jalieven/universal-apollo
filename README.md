@@ -1,9 +1,6 @@
 # TODOs
 
-- Update dependencies
-- Add aphrodite, react-helmet, react-router and apollo-boost
-- Remove current components and css
-- Remove utils
+-   Update dependencies
 
 Package Current Wanted Latest Location
 apollo-boost 0.1.18 0.1.19 0.1.19 flush-requires-boilerplate-webpack-chunknames

@@ -5,10 +5,10 @@ const noFavicon = require('express-no-favicons');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware');
-const clientConfig = require('../webpack/client.dev');
-const serverConfig = require('../webpack/server.dev');
-const clientConfigProd = require('../webpack/client.prod');
-const serverConfigProd = require('../webpack/server.prod');
+const clientConfig = require('./../webpack/client.dev');
+const serverConfig = require('./../webpack/server.dev');
+const clientConfigProd = require('./../webpack/client.prod');
+const serverConfigProd = require('./../webpack/server.prod');
 
 const { publicPath } = clientConfig.output;
 const outputPath = clientConfig.output.path;
@@ -42,7 +42,7 @@ if (DEV) {
 	webpack([clientConfigProd, serverConfigProd]).run((err, stats) => {
 		const clientStats = stats.toJson().children[0];
 		/* eslint-disable global-require */
-		const serverRender = require('../buildServer/main.js').default;
+		const serverRender = require('./../buildServer/main.js').default;
 		/* eslint-enable global-require */
 		app.use(publicPath, express.static(outputPath));
 		app.use(
@@ -50,7 +50,6 @@ if (DEV) {
 				clientStats,
 			}),
 		);
-
 		done();
 	});
 }

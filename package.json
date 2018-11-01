@@ -17,7 +17,7 @@
 		"cm": "git-cz"
 	},
 	"dependencies": {
-		"apollo-boost": "^0.1.18",
+		"apollo-boost": "^0.1.19",
 		"colors": "^1.3.2",
 		"express": "^4.16.3",
 		"express-no-favicons": "^0.0.1",
@@ -31,6 +31,7 @@
 		"react": "^16.5.2",
 		"react-apollo": "^2.2.4",
 		"react-dom": "^16.5.2",
+		"react-helmet": "^5.2.0",
 		"react-router": "^4.3.1",
 		"react-router-dom": "^4.3.1",
 		"react-universal-component": "^3.0.3",

@@ -29,7 +29,6 @@ export default ({ clientStats }) => (req, res) => {
 		/>
 	);
 	/* eslint-enable react/no-danger */
-
 	renderToStringWithData(<App />).then(app => {
 		// get initial apollo state and convert it into a script string
 		const initialState = apolloClient.extract();
@@ -40,7 +39,6 @@ export default ({ clientStats }) => (req, res) => {
 		const { js, styles, cssHash, scripts, stylesheets } = flushChunks(clientStats, {
 			chunkNames,
 		});
-
 		/* eslint-disable no-console */
 		console.log('PATH', req.path);
 		console.log('DYNAMIC CHUNK NAMES RENDERED', chunkNames);

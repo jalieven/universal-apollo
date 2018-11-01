@@ -1,7 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+
+import styles from './hero.styl';
 
 const QUERY = gql`
 	query HeroFriends($episode: Episode!) {
@@ -21,7 +23,7 @@ const HeroAndFriends = ({ match }) => (
 			if (loading) return 'Patience young grasshopper...';
 			const title = `Hero: ${data.hero.name}`;
 			return (
-				<Fragment>
+				<div className={styles.hero}>
 					<h1>{title}</h1>
 					<h2>His/her friends:</h2>
 					<ul>
@@ -30,7 +32,7 @@ const HeroAndFriends = ({ match }) => (
 						))}
 					</ul>
 					<Link to="/">Home</Link>
-				</Fragment>
+				</div>
 			);
 		}}
 	</Query>
