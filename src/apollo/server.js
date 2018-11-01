@@ -1,11 +1,15 @@
 import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost'
+import fetch from 'node-fetch'
 
 // import { defaults, resolvers /*typeDefs*/ } from "./localState.js";
 import config from '../config'
 
-const client = new ApolloClient({
-  link: new HttpLink({ uri: config.gqlUri }),
-  cache: new InMemoryCache().restore(window.__APOLLO_STATE__)
+const server = new ApolloClient({
+  link: new HttpLink({
+    uri: config.gqlUri,
+    fetch
+  }),
+  cache: new InMemoryCache()
   // clientState: {
   //   defaults,
   //   resolvers
@@ -13,4 +17,4 @@ const client = new ApolloClient({
   // }
 })
 
-export default client
+export default server

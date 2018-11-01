@@ -1,16 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom/server'
+import { ApolloProvider, renderToStringWithData } from 'react-apollo'
 import { flushChunkNames } from 'react-universal-component/server'
 import flushChunks from 'webpack-flush-chunks'
 import { StaticRouter as Router } from 'react-router-dom'
+
 import Routes from '../src/routes'
+import server from '../src/apollo/server'
 
 export default ({ clientStats }) => (req, res) => {
   const context = {}
   const App = () => (
-    <Router location={req.url} context={context}>
-      <Routes />
-    </Router>
+    <ApolloProvider client={server}>
+      <Router location={req.url} context={context}>
+        <Routes />
+      </Router>
+    </ApolloProvider>
   )
   const app = ReactDOM.renderToString(<App />)
   const chunkNames = flushChunkNames()

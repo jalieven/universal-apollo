@@ -1,13 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
+import { ApolloProvider } from 'react-apollo'
 import { BrowserRouter as Router } from 'react-router-dom'
 import Routes from './routes'
 
+import client from './apollo/client'
+
 const App = () => (
-  <Router>
-    <Routes />
-  </Router>
+  <ApolloProvider client={client}>
+    <Router>
+      <Routes />
+    </Router>
+  </ApolloProvider>
 )
 
 const render = App => ReactDOM.hydrate(
