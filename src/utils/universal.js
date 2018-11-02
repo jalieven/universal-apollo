@@ -7,7 +7,7 @@ const Loading = () => <div>Loading javascript...</div>;
 const LoadError = () => <div>Error encountered...</div>;
 
 const determineHowToLoad = ({ page }) =>
-	typeof page !== 'string' ? () => page() : import(`./${page}`);
+	typeof page !== 'string' ? () => page() : import(`./../${page}`);
 
 const LoadComponent = file =>
 	universal(determineHowToLoad({ page: file }), {

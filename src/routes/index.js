@@ -3,10 +3,10 @@ import Helmet from 'react-helmet';
 import { Route, Switch } from 'react-router';
 
 import config from '../config';
-import LoadComponent from './universal';
+import LoadComponent from '../utils/universal';
 
-const Home = LoadComponent('home');
-const HeroAndFriends = LoadComponent('hero');
+const Home = LoadComponent('routes/home');
+const HeroAndFriends = LoadComponent('routes/hero');
 
 const Routes = () => (
 	<Fragment>
