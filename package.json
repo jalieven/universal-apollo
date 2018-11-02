@@ -23,6 +23,7 @@
 		"compression": "^1.7.3",
 		"emotion": "^9.2.12",
 		"emotion-server": "^9.2.12",
+		"emotion-theming": "^9.2.9",
 		"express": "^4.16.3",
 		"express-no-favicons": "^0.0.1",
 		"extract-css-chunks-webpack-plugin": "^3.1.3",

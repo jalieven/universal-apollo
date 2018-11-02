@@ -1,5 +1,4 @@
 # TODO
 
 -   remove lodash for size optimization and implement handy functions in es6
--   fix react-emotion for start:prod
--   insert react-intl
+-   insert react-intl (https://www.codeandweb.com/babeledit/tutorials/how-to-translate-your-react-app-with-react-intl)

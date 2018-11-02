@@ -1,6 +1,17 @@
 {
 	"presets": ["react", "stage-2"],
-	"plugins": ["emotion", "universal-import"],
+	"plugins": [
+		[
+			"emotion",
+			{
+				"sourceMap": true,
+				"autoLabel": true,
+				"labelFormat": "[local]",
+				"cssPropOptimization": true
+			}
+		],
+		"universal-import"
+	],
 	"env": {
 		"development": {
 			"plugins": ["react-hot-loader/babel"]

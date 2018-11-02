@@ -7,13 +7,13 @@ import LoadComponent from '../utils/universal';
 
 const Test = LoadComponent('components/test');
 
-const Title = styled('h2')`
-	color: hotpink;
-`;
+const Title = styled('h2')(props => ({
+	color: props.theme.primaryColor,
+}));
 
-const Button = styled('button')`
-	color: red;
-`;
+const Button = styled('button')({
+	color: 'red',
+});
 
 class Home extends React.Component {
 	constructor(props) {
@@ -32,7 +32,7 @@ class Home extends React.Component {
 	renderSubComponent() {
 		const { component } = this.state;
 		if (component % 2 === 1) {
-			return <div>First</div>;
+			return <Title>First</Title>;
 		}
 		return <Test />;
 	}
