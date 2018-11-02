@@ -1,6 +1,7 @@
 require('colors');
 const express = require('express');
 const apicache = require('apicache');
+const compression = require('compression');
 const webpack = require('webpack');
 const noFavicon = require('express-no-favicons');
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -55,6 +56,7 @@ if (DEV) {
 				exclude: [404, 403],
 			},
 		}).middleware;
+		app.use(compression());
 		app.use(publicPath, cache(), express.static(outputPath));
 		app.get('/', cache('1 minute'), serverRender({ clientStats }));
 		app.get('/episodes/:episode', cache('10 seconds'), serverRender({ clientStats }));

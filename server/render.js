@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { ApolloProvider, renderToStringWithData } from 'react-apollo';
+import { renderStylesToString } from 'emotion-server';
 import { flushChunkNames } from 'react-universal-component/server';
 import flushChunks from 'webpack-flush-chunks';
 import { StaticRouter as Router } from 'react-router-dom';
@@ -40,6 +41,8 @@ export default ({ clientStats }) => (req, res) => {
 		const title = helmet.title.toString();
 		const meta = helmet.meta.toString();
 		const link = helmet.link.toString();
+		// ssr emotion styles
+		const appWithStyles = renderStylesToString(app);
 		// find out which scripts should be included in the page
 		const chunkNames = flushChunkNames();
 		const { js, styles, cssHash, scripts, stylesheets } = flushChunks(clientStats, {
@@ -63,7 +66,7 @@ export default ({ clientStats }) => (req, res) => {
 				${styles}
 			</head>
 			<body>
-				<div id="root">${app}</div>
+				<div id="root">${appWithStyles}</div>
 				${stateScript}
 				${cssHash}
 				${js}
