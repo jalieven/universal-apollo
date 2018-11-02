@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import styled from 'react-emotion';
 import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 
 import LoadComponent from '../utils/universal';
 
@@ -44,7 +45,14 @@ class Home extends React.Component {
 					<title>Home</title>
 				</Helmet>
 				<Title>Home</Title>
-				<Button onClick={this.toggleComponent}>Load component</Button>
+				<Button onClick={this.toggleComponent}>
+					<FormattedMessage
+						id="button.toggle.component"
+						defaultMessage="Load {name}"
+						description="Text for the load component async button"
+						values={{ name: 'Component' }}
+					/>
+				</Button>
 				{this.renderSubComponent()}
 				<Link to="/episodes/EMPIRE">Empire episode</Link>
 			</div>
