@@ -15,7 +15,7 @@ export default ({ clientStats }) => (req, res) => {
 	const App = () => (
 		<ApolloProvider client={apolloClient}>
 			<Router location={req.url} context={context}>
-				<Routes />
+				<Routes language={req.language} />
 			</Router>
 		</ApolloProvider>
 	);

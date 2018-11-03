@@ -23,10 +23,14 @@ const messages = {
 	en: messagesEn,
 	nl: messagesNl,
 };
-const language = 'nl';
 
-const Routes = () => (
-	<IntlProvider locale={language} messages={messages[language]}>
+const Routes = ({ language }) => (
+	<IntlProvider
+		key={`intl-provider-${language}`}
+		locale={language}
+		messages={messages[language]}
+		defaultLocale={config.defaultLanguage}
+	>
 		<ThemeProvider theme={theme}>
 			<Fragment>
 				<Helmet>

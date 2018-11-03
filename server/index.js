@@ -2,6 +2,7 @@ require('colors');
 const express = require('express');
 const apicache = require('apicache');
 const compression = require('compression');
+const requestLanguage = require('express-request-language');
 const webpack = require('webpack');
 const noFavicon = require('express-no-favicons');
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -58,6 +59,16 @@ if (DEV) {
 		}).middleware;
 		app.use(compression());
 		app.use(publicPath, cache(), express.static(outputPath));
+		app.use(
+			requestLanguage({
+				languages: ['en', 'nl'],
+				// cookie: {
+				// 	name: 'language',
+				// 	options: { maxAge: 24 * 3600 * 1000 },
+				// 	url: '/languages/{language}'
+				// }
+			}),
+		);
 		app.get('/', cache('1 minute'), serverRender({ clientStats }));
 		app.get('/episodes/:episode', cache('10 seconds'), serverRender({ clientStats }));
 		done();
