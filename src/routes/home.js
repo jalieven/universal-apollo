@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
 import LoadComponent from '../utils/universal';
+import styles from '../styles/general';
 
 const Test = LoadComponent('components/test');
 
@@ -15,6 +16,8 @@ const Title = styled('h2')(props => ({
 const Button = styled('button')({
 	color: 'red',
 });
+
+const Fill = styled('div')(styles.fill);
 
 class Home extends React.Component {
 	constructor(props) {
@@ -39,10 +42,11 @@ class Home extends React.Component {
 	}
 
 	render() {
+		const { style } = this.props;
 		const chars =
 			'Een campagnevideo van de Amerikaanse president Donald Trump zal niet te zien zijn op CNN. Volgens de nieuwszender is het filmpje racistisch en feitelijk onjuist.';
 		return (
-			<div>
+			<Fill style={style}>
 				<Helmet>
 					<title>Home</title>
 				</Helmet>
@@ -58,7 +62,7 @@ class Home extends React.Component {
 				</Button>
 				{this.renderSubComponent()}
 				<Link to="/episodes/EMPIRE">Empire episode</Link>
-			</div>
+			</Fill>
 		);
 	}
 }
