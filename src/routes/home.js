@@ -39,12 +39,15 @@ class Home extends React.Component {
 	}
 
 	render() {
+		const chars =
+			'Een campagnevideo van de Amerikaanse president Donald Trump zal niet te zien zijn op CNN. Volgens de nieuwszender is het filmpje racistisch en feitelijk onjuist.';
 		return (
 			<div>
 				<Helmet>
 					<title>Home</title>
 				</Helmet>
 				<Title>Home</Title>
+				<span>{chars}</span>
 				<Button onClick={this.toggleComponent}>
 					<FormattedMessage
 						id="button.toggle.component"

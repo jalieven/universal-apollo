@@ -11,6 +11,8 @@ import LoadComponent from '../utils/universal';
 import messagesEn from '../translations/en.json';
 import messagesNl from '../translations/nl.json';
 
+import '../styles/general.styl'; // eslint-disable-line import/extensions
+
 const Home = LoadComponent('routes/home');
 const HeroAndFriends = LoadComponent('routes/hero');
 
