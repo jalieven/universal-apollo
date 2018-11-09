@@ -4,9 +4,6 @@ const fill = {
 	right: '0px',
 	top: '0px',
 	bottom: '0px',
-	// display: 'flex',
-	// justifyContent: 'center',
-	// alignItems: 'center',
 };
 
 const styles = {
