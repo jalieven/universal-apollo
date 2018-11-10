@@ -49,6 +49,7 @@ export default ({ clientStats }) => (req, res) => {
 			chunkNames,
 		});
 		/* eslint-disable no-console */
+		console.log('STATE', JSON.stringify(initialState));
 		console.log('PATH', req.path);
 		console.log('DYNAMIC CHUNK NAMES RENDERED', chunkNames);
 		console.log('SCRIPTS SERVED', scripts);

@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router';
 import { ThemeProvider } from 'emotion-theming';
 import styled from 'react-emotion';
 import { IntlProvider, addLocaleData } from 'react-intl';
-import { Transition, config as springConfig } from 'react-spring';
 import localeEn from 'react-intl/locale-data/en';
 import localeNl from 'react-intl/locale-data/nl';
 
@@ -30,49 +29,29 @@ const messages = {
 };
 
 const Routes = ({ language }) => (
-	<Route
-		render={({ location }) => (
-			<Fragment>
-				<IntlProvider
-					key={`intl-provider-${language}`}
-					locale={language}
-					messages={messages[language]}
-					defaultLocale={config.defaultLanguage}
-				>
-					<ThemeProvider theme={theme}>
-						<Fragment>
-							<Helmet>
-								<link rel="dns-prefetch" href={config.gqlUri} />
-							</Helmet>
-							<Transition
-								config={springConfig.slow}
-								keys={location.pathname}
-								from={{ opacity: 0, transform: 'translateX(-110%)' }}
-								enter={{ opacity: 1, transform: 'translateX(0%)' }}
-								leave={{ opacity: 0, transform: 'translateX(110%)' }}
-							>
-								{item => style => (
-									<Switch>
-										<Route
-											exact
-											path="/"
-											render={props => <Home style={style} {...props} />}
-										/>
-										<Route
-											path="/episodes/:episode"
-											render={props => (
-												<HeroAndFriends style={style} {...props} />
-											)}
-										/>
-									</Switch>
-								)}
-							</Transition>
-						</Fragment>
-					</ThemeProvider>
-				</IntlProvider>
-			</Fragment>
-		)}
-	/>
+	<Fragment>
+		<IntlProvider
+			key={`intl-provider-${language}`}
+			locale={language}
+			messages={messages[language]}
+			defaultLocale={config.defaultLanguage}
+		>
+			<ThemeProvider theme={theme}>
+				<Fragment>
+					<Helmet>
+						<link rel="dns-prefetch" href={config.gqlUri} />
+					</Helmet>
+					<Switch>
+						<Route exact path="/" render={props => <Home {...props} />} />
+						<Route
+							path="/episodes/:episode"
+							render={props => <HeroAndFriends {...props} />}
+						/>
+					</Switch>
+				</Fragment>
+			</ThemeProvider>
+		</IntlProvider>
+	</Fragment>
 );
 
 export default Routes;
