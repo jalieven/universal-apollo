@@ -39,7 +39,9 @@ const Routes = ({ language }) => (
 			<ThemeProvider theme={theme}>
 				<Fragment>
 					<Helmet>
+						<html lang="en" amp />
 						<link rel="dns-prefetch" href={config.gqlUri} />
+						<meta name="viewport" content="width=device-width, initial-scale=1" />
 					</Helmet>
 					<Switch>
 						<Route exact path="/" render={props => <Home {...props} />} />
