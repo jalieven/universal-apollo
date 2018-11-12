@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const OfflinePlugin = require('offline-plugin');
 
 const res = p => path.resolve(__dirname, p);
 
@@ -61,5 +62,6 @@ module.exports = {
 			},
 		}),
 		new webpack.HashedModuleIdsPlugin(),
+		new OfflinePlugin(),
 	],
 };

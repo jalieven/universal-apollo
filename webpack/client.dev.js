@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const WriteFilePlugin = require('write-file-webpack-plugin'); // here so you can see what chunks are built
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+const OfflinePlugin = require('offline-plugin');
 
 module.exports = {
 	name: 'client',
@@ -63,5 +64,6 @@ module.exports = {
 				NODE_ENV: JSON.stringify('development'),
 			},
 		}),
+		new OfflinePlugin(),
 	],
 };

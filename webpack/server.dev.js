@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const WriteFilePlugin = require('write-file-webpack-plugin');
+const OfflinePlugin = require('offline-plugin');
 
 const res = p => path.resolve(__dirname, p);
 
@@ -78,5 +79,6 @@ module.exports = {
 				NODE_ENV: JSON.stringify('development'),
 			},
 		}),
+		new OfflinePlugin(),
 	],
 };

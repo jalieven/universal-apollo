@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
+const OfflinePlugin = require('offline-plugin');
 
 module.exports = {
 	name: 'client',
@@ -58,5 +59,6 @@ module.exports = {
 			},
 		}),
 		new webpack.HashedModuleIdsPlugin(), // not needed for strategy to work (just good practice)
+		new OfflinePlugin(),
 	],
 };

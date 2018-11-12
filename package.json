@@ -71,6 +71,7 @@
 		"eslint-plugin-react": "7.11.1",
 		"husky": "0.14.3",
 		"lint-staged": "4.2.3",
+		"offline-plugin": "5.0.5",
 		"poststylus": "1.0.0",
 		"prettier": "1.14.3",
 		"pretty-quick": "1.8.0",
