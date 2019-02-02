@@ -61,7 +61,7 @@ class Home extends React.Component {
 					/>
 				</Button>
 				{this.renderSubComponent()}
-				<Link to="/episodes/EMPIRE">Empire episode</Link>
+				<Link to="/films/EMPIRE">The Empire Strikes back</Link>
 			</Fill>
 		);
 	}

@@ -1,5 +1,5 @@
 const config = {
-	gqlUri: 'https://mpjk0plp9.lp.gql.zone/graphql',
+	gqlUri: 'https://swapi.graph.cool/',
 	loadMinDelay: 200,
 	defaultLanguage: 'en',
 };

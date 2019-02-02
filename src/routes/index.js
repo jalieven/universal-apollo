@@ -16,7 +16,7 @@ import '../styles/general.styl'; // eslint-disable-line import/extensions
 import styles from '../styles/general';
 
 const Home = LoadComponent('routes/home');
-const HeroAndFriends = LoadComponent('routes/hero');
+const FilmAndCharacters = LoadComponent('routes/film');
 
 const theme = {
 	primaryColor: 'green',
@@ -46,8 +46,8 @@ const Routes = ({ language }) => (
 					<Switch>
 						<Route exact path="/" render={props => <Home {...props} />} />
 						<Route
-							path="/episodes/:episode"
-							render={props => <HeroAndFriends {...props} />}
+							path="/films/:film"
+							render={props => <FilmAndCharacters {...props} />}
 						/>
 					</Switch>
 				</Fragment>
