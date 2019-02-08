@@ -8,7 +8,7 @@ module.exports = {
 		sourceType: 'module',
 		allowImportExportEverywhere: false,
 	},
-	plugins: ['flowtype'],
+	plugins: ['flowtype', 'react-hooks'],
 	extends: ['airbnb', 'plugin:flowtype/recommended'],
 	settings: {
 		flowtype: {
@@ -135,5 +135,6 @@ module.exports = {
 			},
 		],
 		'linebreak-style': 0,
+		'react-hooks/rules-of-hooks': 'error',
 	},
 };

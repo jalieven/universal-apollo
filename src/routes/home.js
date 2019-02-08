@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Helmet from 'react-helmet';
 import styled from 'react-emotion';
 import { Link } from 'react-router-dom';
@@ -19,52 +19,42 @@ const Button = styled('button')({
 
 const Fill = styled('div')(styles.fill);
 
-class Home extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			component: 1,
-		};
-		this.toggleComponent = this.toggleComponent.bind(this);
-	}
+const toggleComponent = (component, setComponent) => e => setComponent(component + 1);
 
-	toggleComponent() {
-		const { component } = this.state;
-		this.setState({ component: component + 1 });
-	}
-
-	renderSubComponent() {
-		const { component } = this.state;
-		if (component % 2 === 1) {
-			return <Title>First</Title>;
-		}
-		return <Test />;
-	}
-
-	render() {
-		const { style } = this.props;
-		const chars =
-			'Een campagnevideo van de Amerikaanse president Donald Trump zal niet te zien zijn op CNN. Volgens de nieuwszender is het filmpje racistisch en feitelijk onjuist.';
-		return (
-			<Fill style={style}>
-				<Helmet>
-					<title>Home</title>
-				</Helmet>
-				<Title>Home</Title>
-				<span>{chars}</span>
-				<Button onClick={this.toggleComponent}>
-					<FormattedMessage
-						id="button.toggle.component"
-						defaultMessage="Load {name}"
-						description="Text for the load component async button"
-						values={{ name: 'Component' }}
-					/>
-				</Button>
-				{this.renderSubComponent()}
-				<Link to="/films/EMPIRE">The Empire Strikes back</Link>
-			</Fill>
-		);
-	}
-}
+const Home = ({ style }) => {
+	const [component, setComponent] = useState(1);
+	const [users, setUsers] = useState([]);
+	useEffect(() => {
+		fetch('https://api.github.com/users')
+			.then(response => response.json())
+			.then(data => setUsers(data));
+	}, []);
+	const chars =
+		'De campagnevideo van de Amerikaanse president Donald Trump zal niet te zien zijn op CNN. Volgens de nieuwszender is het filmpje racistisch en feitelijk onjuist.';
+	return (
+		<Fill style={style}>
+			<Helmet title="Home" />
+			<Title>Home</Title>
+			<span>{chars}</span>
+			<Button onClick={toggleComponent(component, setComponent)}>
+				<FormattedMessage
+					id="button.toggle.component"
+					defaultMessage="Load {name}"
+					description="Text for the load component async button"
+					values={{ name: 'Component' }}
+				/>
+			</Button>
+			{component % 2 === 1 ? <Title>First</Title> : <Test />}
+			<Link to="/films/EMPIRE">The Empire Strikes back</Link>
+			<div>
+				{users.map(user => (
+					<div key={user.id}>
+						<span>{user.login}</span>
+					</div>
+				))}
+			</div>
+		</Fill>
+	);
+};
 
 export default Home;

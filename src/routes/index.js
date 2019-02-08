@@ -19,7 +19,8 @@ const Home = LoadComponent('routes/home');
 const FilmAndCharacters = LoadComponent('routes/film');
 
 const theme = {
-	primaryColor: 'green',
+	primaryColor: 'hotpink',
+	background: 'grey',
 };
 
 addLocaleData([...localeEn, ...localeNl]);

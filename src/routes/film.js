@@ -3,7 +3,6 @@ import Helmet from 'react-helmet';
 import { Link } from 'react-router-dom';
 import { Query } from 'react-apollo';
 import styled from 'react-emotion';
-import { Transition } from 'react-spring';
 import gql from 'graphql-tag';
 import first from 'lodash/first';
 import map from 'lodash/map';
@@ -24,10 +23,9 @@ const QUERY = gql`
 	}
 `;
 
-const Film = ({ match, characters, title }) => (
+const Film = ({ characters, title }) => (
 	<Fragment>
-		<Helmet>
-			<title>Film</title>
+		<Helmet title={title}>
 			<meta name="description" content={title} />
 		</Helmet>
 		<h1>{title}</h1>
@@ -44,6 +42,7 @@ const Film = ({ match, characters, title }) => (
 	</Fragment>
 );
 
+// TODO wrap Query object so that error and loading is customized and not repeated
 const FilmAndCharacter = ({ match, style }) => (
 	<Fill style={style}>
 		<Query query={QUERY} variables={{ film: match.params.film }}>

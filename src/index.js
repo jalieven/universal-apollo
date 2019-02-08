@@ -21,17 +21,16 @@ const App = () => (
 	</ApolloProvider>
 );
 
-const render = App =>
+const render = Root =>
 	ReactDOM.hydrate(
 		<AppContainer>
-			<App />
+			<Root />
 		</AppContainer>,
 		document.getElementById('root'),
 	);
 
 if (process.env.NODE_ENV === 'development' && module.hot) {
 	module.hot.accept('./routes/index.js', () => {
-		const App = require('./routes/index').default; // eslint-disable-line global-require
 		render(App);
 	});
 }
