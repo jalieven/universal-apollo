@@ -45,7 +45,7 @@ const Film = ({ characters, title }) => (
 // TODO wrap Query object so that error and loading is customized and not repeated
 const FilmAndCharacter = ({ match, style }) => (
 	<Fill style={style}>
-		<Query query={QUERY} variables={{ film: match.params.film }}>
+		<Query asyncMode query={QUERY} variables={{ film: match.params.film }}>
 			{({ data, error, loading }) => {
 				if (error) return '💩 Oops!';
 				if (loading) return 'Patience young grasshopper...';

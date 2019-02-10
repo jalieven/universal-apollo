@@ -69,8 +69,10 @@ if (DEV) {
 				// }
 			}),
 		);
+		// TODO make this configurable and also use in routes component
 		app.get('/', cache('1 minute'), serverRender({ clientStats }));
-		app.get('/episodes/:episode', cache('10 seconds'), serverRender({ clientStats }));
+		app.get('/films/:film', cache('10 seconds'), serverRender({ clientStats }));
+		app.get('/fountain', cache('10 seconds'), serverRender({ clientStats }));
 		done();
 	});
 }

@@ -22,6 +22,13 @@ const App = () => (
 );
 
 const render = Root =>
+	// will this be the final api for enabling Concurrent React?
+	// when will SSR be supported?
+	// ReactDOM.createRoot(document.getElementById('root')).hydrate(
+	// 	<AppContainer>
+	// 		<Root />
+	// 	</AppContainer>
+	// );
 	ReactDOM.hydrate(
 		<AppContainer>
 			<Root />

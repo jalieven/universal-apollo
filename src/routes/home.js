@@ -46,6 +46,7 @@ const Home = ({ style }) => {
 			</Button>
 			{component % 2 === 1 ? <Title>First</Title> : <Test />}
 			<Link to="/films/EMPIRE">The Empire Strikes back</Link>
+			<Link to="/fountain">Fountain</Link>
 			<div>
 				{users.map(user => (
 					<div key={user.id}>
